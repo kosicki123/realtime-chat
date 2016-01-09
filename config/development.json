@@ -1,0 +1,5 @@
+{
+  //user:password
+  "dbURL":"mongodb://realtime:realtime@ds039165.mongolab.com:39165/realtimechat",
+  "sessionSecret":"realtimesecret"
+}
