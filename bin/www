@@ -3,11 +3,13 @@
 /**
  * Module dependencies.
  */
-
+var express = require('express');
 var app = require('../app');
 var debug = require('debug')('realtime-chat:server');
 var http = require('http');
-
+var rooms = [];
+var passport = require('passport');
+var config = require('../config/config.js');
 /**
  * Get port from environment and store in Express.
  */
@@ -26,6 +28,9 @@ var server = http.createServer(app);
  */
 
 var io = require('socket.io').listen(server);
+require('../socket/socket.js')(io, rooms);
+
+require('../routes/routes.js')(express, app, passport, config, rooms);
 
 server.listen(port);
 server.on('error', onError);
